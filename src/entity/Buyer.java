@@ -7,4 +7,5 @@ public class Buyer extends User {
         this.email=email;
     }
 
+
 }

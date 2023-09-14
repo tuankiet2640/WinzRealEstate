@@ -7,5 +7,6 @@ public class BuyerService {
     }
 
     public static void BuyerMenu() {
+        System.out.println("buyer menu");
     }
 }

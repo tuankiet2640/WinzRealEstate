@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserService implements IUser {
-    private static List<User> users;
+    public static List<User> users;
     private static final Scanner scanner;
 
     static {
@@ -60,7 +60,7 @@ public class UserService implements IUser {
                 SellerService.SellerMenu();
             }
             if(user instanceof Admin){
-                AdminService.AdminMenu();
+                AdminService.adminMenu();
             }
         } else {
             System.out.println("Thông tin đăng nhập sai!");

@@ -5,5 +5,6 @@ public class SellerService {
     }
 
     public static void SellerMenu() {
+        System.out.println("seller menu");
     }
 }
