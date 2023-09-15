@@ -1,15 +1,28 @@
 package entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Seller extends User {
-    private String phoneNumber;
-    public Seller(int userId, String username,String password,String phoneNumber){
+    private int phoneNumber;
+    List<Property> properties= new ArrayList<>();
+    public Seller(int userId, String username,String password,int phoneNumber){
         super (userId,username,password);
         this.phoneNumber=phoneNumber;
     }
-    public String getPhoneNumber() {
+
+    public List<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
+    }
+
+    public int getPhoneNumber() {
         return phoneNumber;
     }
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }

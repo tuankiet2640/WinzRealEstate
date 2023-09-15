@@ -1,7 +1,8 @@
 package service.impl;
 
+import entity.User;
+
 public class AdminService {
-    public static void adminMenu() {
-        System.out.println("admin Menu");
+    public void login(User user) {
     }
 }

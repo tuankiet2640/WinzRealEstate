@@ -5,26 +5,26 @@ import entity.Admin;
 import entity.Buyer;
 import entity.Seller;
 import entity.User;
-import service.IUser;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserService implements IUser {
+public class UserService {
     public static List<User> users;
     private static final Scanner scanner;
+    private static int userId;
 
     static {
         users = new ArrayList<>();
         scanner = new Scanner(System.in);
+        userId=3000;
     }
 
 
-    @Override
-    public void register() {
 
+
+    public void register() {
         System.out.println("Bạn là? \n" +
                 "1. Buyer\n" +
                 "2. Seller\n");
@@ -32,19 +32,19 @@ public class UserService implements IUser {
         scanner.nextLine();
 
         switch (choice) {
-            case Constants.BUYER_CHOICE:
-                BuyerService.createOneBuyer();
+            case Constants.BUYER_REGISTER_CHOICE:
+                BuyerService buyerService= new BuyerService();
+                buyerService.register();
                 break;
-            case Constants.SELLER_CHOICE:
-                SellerService.createOneSeller();
+            case Constants.SELLER_REGISTER_CHOICE:
+                SellerService sellerService= new SellerService();
+                sellerService.register();
                 break;
             default:
                 System.out.println("Vui lòng nhập đúng lựa chọn");
         }
-
     }
 
-    @Override
     public void login() {
         System.out.println("Nhập tên đăng nhập:");
         String username = scanner.nextLine();
@@ -54,18 +54,27 @@ public class UserService implements IUser {
         User user = findUserByUsernameAndPassword(username, password);
         if (user!=null){
             if(user instanceof Buyer){
-                BuyerService.BuyerMenu();
+                BuyerService buyerService= new BuyerService();
+                buyerService.login(user);
             }
             if(user instanceof Seller){
-                SellerService.SellerMenu();
+                SellerService sellerService= new SellerService();
+                sellerService.login(user);
             }
             if(user instanceof Admin){
-                AdminService.adminMenu();
+                AdminService adminService= new AdminService();
+                adminService.login(user);
             }
         } else {
             System.out.println("Thông tin đăng nhập sai!");
             return;
         }
+    }
+    public static void changePassword(User user) {
+        System.out.println("Nhap mat khau moi: ");
+        String newPassword= scanner.nextLine();
+
+        user.setPassword(newPassword);
     }
 
     private User findUserByUsernameAndPassword(String username, String password) {
@@ -77,8 +86,23 @@ public class UserService implements IUser {
         }
         return null;
     }
-    @Override
+
+    public static List<User> getUsers() {
+        return users;
+    }
+    public static int createIdForNewAccount() {
+        userId++;
+        return userId;
+    }
+    public static boolean isDuplicateUserName(String username) {
+        for (User user : users) {
+            if ((user.getUsername().equals(username))) {
+                return true;
+            }
+        }
+        return false;
+    }
     public void logout(){
 
-}
+    }
 }
