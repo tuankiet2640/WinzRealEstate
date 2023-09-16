@@ -1,10 +1,9 @@
 package service.impl;
-
+import com.sun.tools.javac.Main;
 import constants.Constants;
+import entity.Property;
 import entity.Seller;
 import entity.User;
-
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -32,6 +31,8 @@ public class SellerService {
             int id = UserService.createIdForNewAccount();
             Seller seller = new Seller(id,username,password,sdt);
             users.add(seller);
+            UserService.updateUserList();
+
             System.out.println("Đăng ký thanhf công!");
         } else {
             System.out.println("Tên đăng nhập đã tồn tại!");
@@ -40,10 +41,12 @@ public class SellerService {
 
     public void login(User user) {
         do {
+            UserService.updateUserList();
             System.out.println("Welcome " + user.getUsername()+"!\n"+
                     "1. Put Property up for sale\n" +
                     "2. Change password\n" +
-                    "3. Logout\n");
+                    "3. Display your properties\n"+
+                    "0. Logout\n");
             int SellerLoginChoice= scanner.nextInt();
             scanner.nextLine();
 
@@ -53,6 +56,9 @@ public class SellerService {
                     break;
                 case Constants.USER_CHANGE_PASSWORD:
                     UserService.changePassword(user);
+                    break;
+                case Constants.DISPLAY_PROPERTY:
+                    displayProperty(user);
                     break;
                 case Constants.USER_LOGOUT:
                     return;
@@ -79,8 +85,10 @@ public class SellerService {
             default:
                 System.out.println("Vui lòng nhập đúng lựa chọn");
         }
-
-
-
+    }
+    private void displayProperty(User user){
+        for (Property property: ((Seller) user).getProperties()){
+            System.out.println(property);
+        }
     }
 }

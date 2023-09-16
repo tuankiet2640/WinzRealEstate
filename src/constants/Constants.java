@@ -8,8 +8,9 @@ public interface Constants {
     int SELLER_REGISTER_CHOICE=2;
     int BUYER_VIEW=1;
     int USER_CHANGE_PASSWORD=2;
-    int USER_LOGOUT=3;
+    int USER_LOGOUT=0;
     int SELLER_SELL=1;
+    int DISPLAY_PROPERTY=3;
     int SELL_GROUND_PROPERTY=1;
     int SELL_APARTMENT_PROPERTY=2;
 }

@@ -6,14 +6,16 @@ import entity.Buyer;
 import entity.Seller;
 import entity.User;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class UserService {
-    public static List<User> users;
+    private static List<User> users;
     private static final Scanner scanner;
     private static int userId;
+    private static final File USER_FILE= new File("src/files/userdata.txt");
 
     static {
         users = new ArrayList<>();
@@ -21,8 +23,21 @@ public class UserService {
         userId=3000;
     }
 
-
-
+    public static void updateUserList() {
+        List<User> users= UserService.getUsers();
+        try {
+            ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(getUserdata()));
+            oos.writeObject(users);
+            oos.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void displayUserList(){
+        for (User user: users){
+            System.out.println(user.getUsername());
+        }
+    }
 
     public void register() {
         System.out.println("Bạn là? \n" +
@@ -90,6 +105,11 @@ public class UserService {
     public static List<User> getUsers() {
         return users;
     }
+
+    public static void setUsers(List<User> users) {
+        UserService.users = users;
+    }
+
     public static int createIdForNewAccount() {
         userId++;
         return userId;
@@ -104,5 +124,9 @@ public class UserService {
     }
     public void logout(){
 
+    }
+
+    public static File getUserdata(){
+        return USER_FILE;
     }
 }

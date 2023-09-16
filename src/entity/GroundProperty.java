@@ -3,9 +3,9 @@ package entity;
 import java.io.Serializable;
 
 public class GroundProperty extends Property implements Serializable {
-    private boolean hasPool;
-    public GroundProperty(int propertyId, String propertyTitle, Address address, double propertyPrice, long area, boolean hasPool) {
+    private int numberOfPool;
+    public GroundProperty(int propertyId, String propertyTitle, Address address, double propertyPrice, long area, int numberOfPool) {
         super(propertyId,propertyTitle, address, propertyPrice, area);
-        this.hasPool=hasPool;
+        this.numberOfPool=numberOfPool;
     }
 }

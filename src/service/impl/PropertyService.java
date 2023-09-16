@@ -29,18 +29,11 @@ public class PropertyService {
         long area= scanner.nextLong();
 
         boolean hasPool=false;
-        System.out.println("Có bể bơi hay không? Y/N");
-        String poolChoice= scanner.nextLine();
-        switch (poolChoice) {
-            case "Y":
-                hasPool = true;
-                break;
-            case "N":
-                hasPool = false;
-                break;
+        System.out.println("Nhập số lượng bể bơi: ");
+        int numberOfPool= scanner.nextInt();
+        scanner.nextLine();
 
-        }
-        Property property= new GroundProperty(id,propertyTitle, address, propertyPrice, area, hasPool);
+        Property property= new GroundProperty(id,propertyTitle, address, propertyPrice, area, numberOfPool);
 
         List<Property> properties= ((Seller) user).getProperties();
         properties.add(property);
@@ -91,4 +84,5 @@ public class PropertyService {
     private static int addingPropertyId(){
         return propertyId++;
     }
+
 }

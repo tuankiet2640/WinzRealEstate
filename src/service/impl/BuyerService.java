@@ -30,6 +30,7 @@ public class BuyerService {
             int id = UserService.createIdForNewAccount();
             Buyer buyer = new Buyer(id,username,password,email);
             users.add(buyer);
+            UserService.updateUserList();
             System.out.println("Đăng ký thanhf công!");
         } else {
             System.out.println("Tên đăng nhập đã tồn tại!");

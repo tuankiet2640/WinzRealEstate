@@ -56,4 +56,14 @@ public abstract class Property implements Serializable {
         this.area = area;
     }
 
+    @Override
+    public String toString() {
+        return "Property{" +
+                "propertyId=" + propertyId +
+                ", propertyTitle='" + propertyTitle + '\'' +
+                ", address=" + address +
+                ", propertyPrice=" + propertyPrice +
+                ", area=" + area +
+                '}';
+    }
 }

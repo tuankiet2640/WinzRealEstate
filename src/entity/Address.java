@@ -21,4 +21,13 @@ public class Address implements Serializable {
         this.housenumber=houseNumber;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "district='" + district + '\'' +
+                ", city='" + city + '\'' +
+                ", housenumber='" + housenumber + '\'' +
+                '}';
+    }
 }

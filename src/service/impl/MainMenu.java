@@ -1,17 +1,24 @@
 package service.impl;
 
 import constants.Constants;
+import entity.User;
 
-import java.util.InputMismatchException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.List;
 import java.util.Scanner;
 
-public class Controller {
+public class MainMenu {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void mainMenu() {
         UserService userService = new UserService();
+        loadData();
+        UserService.displayUserList();
         do {
-                System.out.println("Welcome!\n" +
+                System.out.println("\n" +
                         "1. Register\n" +
                         "2. Login\n" +
                         "3. Exit\n");
@@ -34,6 +41,20 @@ public class Controller {
             } while (true);
 
 
+    }
+    public static void loadData(){
+        File userdata= UserService.getUserdata();
+        if (userdata.length()!=0){
+            try {
+                ObjectInputStream ois= new ObjectInputStream(new FileInputStream(userdata));
+                UserService.setUsers((List<User>)ois.readObject());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
     }
 
 }
