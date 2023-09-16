@@ -1,18 +1,29 @@
 package entity;
 
-public abstract class Property {
+import java.io.Serializable;
+
+public abstract class Property implements Serializable {
+    private int propertyId;
     private String propertyTitle;
     private Address address;
     private double propertyPrice;
     private long area;
 
-    public Property(String propertyTitle, Address address, double propertyPrice, long area) {
+    public Property(int propertyId, String propertyTitle, Address address, double propertyPrice, long area) {
+        this.propertyId=propertyId;
         this.propertyTitle = propertyTitle;
         this.address = address;
         this.propertyPrice = propertyPrice;
         this.area = area;
     }
 
+    public int getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(int propertyId) {
+        this.propertyId = propertyId;
+    }
     public String getPropertyTitle() {
         return propertyTitle;
     }

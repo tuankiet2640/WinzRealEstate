@@ -1,9 +1,10 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Seller extends User {
+public class Seller extends User implements Serializable {
     private int phoneNumber;
     List<Property> properties= new ArrayList<>();
     public Seller(int userId, String username,String password,int phoneNumber){

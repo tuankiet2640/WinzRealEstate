@@ -1,9 +1,11 @@
 package entity;
 
-public class ApartmentProperty extends Property {
-    private int floor;
-    public ApartmentProperty(String propertyTitle, Address address, double propertyPrice, long area,int floor) {
-        super(propertyTitle, address, propertyPrice, area);
-        this.floor=floor;
+import java.io.Serializable;
+
+public class ApartmentProperty extends Property implements Serializable {
+    private int apartmentNumber;
+    public ApartmentProperty(int propertyId, String propertyTitle, Address address, double propertyPrice, long area,int apartmentNumber) {
+        super(propertyId,propertyTitle, address, propertyPrice, area);
+        this.apartmentNumber=apartmentNumber;
     }
 }

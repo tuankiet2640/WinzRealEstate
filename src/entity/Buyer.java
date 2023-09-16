@@ -1,6 +1,8 @@
 package entity;
 
-public class Buyer extends User {
+import java.io.Serializable;
+
+public class Buyer extends User implements Serializable {
     private String email;
     public Buyer(int userId, String username,String password,String email){
         super (userId,username,password);

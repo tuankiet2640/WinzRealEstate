@@ -1,9 +1,11 @@
 package entity;
 
-public class GroundProperty extends Property {
+import java.io.Serializable;
+
+public class GroundProperty extends Property implements Serializable {
     private boolean hasPool;
-    public GroundProperty(String propertyTitle, Address address, double propertyPrice, long area, boolean hasPool) {
-        super(propertyTitle, address, propertyPrice, area);
+    public GroundProperty(int propertyId, String propertyTitle, Address address, double propertyPrice, long area, boolean hasPool) {
+        super(propertyId,propertyTitle, address, propertyPrice, area);
         this.hasPool=hasPool;
     }
 }
