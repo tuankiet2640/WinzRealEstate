@@ -3,11 +3,11 @@ package entity;
 import java.io.Serializable;
 
 public abstract class Property implements Serializable {
-    private int propertyId;
-    private String propertyTitle;
-    private Address address;
-    private double propertyPrice;
-    private long area;
+    protected int propertyId;
+    protected String propertyTitle;
+    protected Address address;
+    protected double propertyPrice;
+    protected long area;
 
     public Property(int propertyId, String propertyTitle, Address address, double propertyPrice, long area) {
         this.propertyId=propertyId;
@@ -59,8 +59,8 @@ public abstract class Property implements Serializable {
     @Override
     public String toString() {
         return "Property{" +
-                "propertyId=" + propertyId +
-                ", propertyTitle='" + propertyTitle + '\'' +
+                "propertyId=  "+propertyId+
+                ", propertyTitle='" + propertyTitle +
                 ", address=" + address +
                 ", propertyPrice=" + propertyPrice +
                 ", area=" + area +

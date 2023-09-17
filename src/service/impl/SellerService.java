@@ -4,10 +4,12 @@ import constants.Constants;
 import entity.Property;
 import entity.Seller;
 import entity.User;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 
-public class SellerService {
+public class SellerService implements Serializable {
     private static final Scanner scanner;
     private  static List<User> users;
 
@@ -31,7 +33,7 @@ public class SellerService {
             int id = UserService.createIdForNewAccount();
             Seller seller = new Seller(id,username,password,sdt);
             users.add(seller);
-            UserService.updateUserList();
+            MainMenu.updateData();
 
             System.out.println("Đăng ký thanhf công!");
         } else {
@@ -41,7 +43,7 @@ public class SellerService {
 
     public void login(User user) {
         do {
-            UserService.updateUserList();
+            MainMenu.updateData();
             System.out.println("Welcome " + user.getUsername()+"!\n"+
                     "1. Put Property up for sale\n" +
                     "2. Change password\n" +
@@ -71,7 +73,7 @@ public class SellerService {
     private void putPropertyUpforSale(User user){
         System.out.println("Loại bất đông sản bạn cần mua? \n" +
                 "1. Đất Phố\n" +
-                "2. Đất Số\n");
+                "2. Nhà Số\n");
         int choice = scanner.nextInt();
         scanner.nextLine();
 

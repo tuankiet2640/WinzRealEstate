@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserService {
+public class UserService implements Serializable{
     private static List<User> users;
     private static final Scanner scanner;
     private static int userId;
@@ -23,16 +23,6 @@ public class UserService {
         userId=3000;
     }
 
-    public static void updateUserList() {
-        List<User> users= UserService.getUsers();
-        try {
-            ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(getUserdata()));
-            oos.writeObject(users);
-            oos.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public static void displayUserList(){
         for (User user: users){
             System.out.println(user.getUsername());
@@ -121,9 +111,6 @@ public class UserService {
             }
         }
         return false;
-    }
-    public void logout(){
-
     }
 
     public static File getUserdata(){

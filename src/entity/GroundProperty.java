@@ -8,4 +8,16 @@ public class GroundProperty extends Property implements Serializable {
         super(propertyId,propertyTitle, address, propertyPrice, area);
         this.numberOfPool=numberOfPool;
     }
+
+    @Override
+    public String toString() {
+        return "GroundProperty{" +
+                ", propertyId=" + propertyId +
+                ", propertyTitle='" + propertyTitle + '\'' +
+                ", address=" + address +
+                ", propertyPrice=" + propertyPrice +
+                ", area=" + area +
+                ", numberOfPool=" + numberOfPool +
+                '}';
+    }
 }

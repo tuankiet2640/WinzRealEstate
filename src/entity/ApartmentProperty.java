@@ -8,4 +8,16 @@ public class ApartmentProperty extends Property implements Serializable {
         super(propertyId,propertyTitle, address, propertyPrice, area);
         this.apartmentNumber=apartmentNumber;
     }
+
+    @Override
+    public String toString() {
+        return "ApartmentProperty{" +
+                ", propertyId=" + propertyId +
+                ", propertyTitle='" + propertyTitle + '\'' +
+                ", address=" + address +
+                ", propertyPrice=" + propertyPrice +
+                ", area=" + area +
+                ", apartmentNumber=" + apartmentNumber +
+                '}';
+    }
 }
