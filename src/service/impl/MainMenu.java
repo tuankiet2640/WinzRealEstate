@@ -16,6 +16,7 @@ public class MainMenu {
         UserService userService = new UserService();
         loadData();
         updateData();
+        PropertyService.updatePropertyList();
         UserService.displayUserList();
         PropertyService.displayPropertyList();
         do {
@@ -45,7 +46,6 @@ public class MainMenu {
     }
     public static void loadData(){
         File userdata= UserService.getUserdata();
-        File propertydata= PropertyService.getPropertyDataFile();
         if (userdata.length()!=0){
             try {
                 ObjectInputStream ois= new ObjectInputStream(new FileInputStream(userdata));
@@ -57,18 +57,6 @@ public class MainMenu {
                 throw new RuntimeException(e);
             }
         }
-        if (propertydata.length()!=0){
-            try {
-                ObjectInputStream ois= new ObjectInputStream(new FileInputStream(propertydata));
-                PropertyService.setPropertyList((List<Property>)ois.readObject());
-                ois.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
     }
     public static void updateData() {
         List<User> users= UserService.getUsers();
@@ -81,18 +69,6 @@ public class MainMenu {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        List<Property> properties= PropertyService.getPropertyList();
-        try {
-            ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(PropertyService.getPropertyDataFile()));
-            oos.writeObject(properties);
-            oos.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-
     }
 
 

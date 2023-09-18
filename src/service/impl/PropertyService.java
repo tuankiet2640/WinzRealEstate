@@ -12,14 +12,15 @@ public class PropertyService implements Serializable {
     private static final Scanner scanner;
     private static int propertyId;
     private static List<Property> propertyList;
-    private static File PROPERTY_DATA_FILE= new File("src/files/propertydata.txt");
-
 
     static {
         scanner = new Scanner(System.in);
         propertyId=2000;
         propertyList= new ArrayList<>();
     }
+
+
+
     public static void createGroundProperty(User user) {
         propertyId++;
         System.out.println("Nhập tên bds: ");
@@ -89,6 +90,16 @@ public class PropertyService implements Serializable {
 
     }
 
+    public static void updatePropertyList() {
+
+        List<Property> properties= new ArrayList<>();
+        for (User user:UserService.getUsers()){
+            if (user instanceof Seller){
+                properties.addAll(((Seller)user).getProperties());
+            }
+        }
+        setPropertyList(properties);
+    }
     public static void displayPropertyList(){
         for (Property property: propertyList){
             System.out.println(property);
@@ -126,10 +137,4 @@ public class PropertyService implements Serializable {
     public static void setPropertyList(List<Property> propertyList) {
         PropertyService.propertyList = propertyList;
     }
-
-    public static File getPropertyDataFile() {
-        return PROPERTY_DATA_FILE;
-    }
-
-
 }

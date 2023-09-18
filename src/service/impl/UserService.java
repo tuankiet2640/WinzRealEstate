@@ -16,16 +16,18 @@ public class UserService implements Serializable{
     private static final Scanner scanner;
     private static int userId;
     private static final File USER_FILE= new File("src/files/userdata.txt");
+    private static Admin admin= Admin.getAdmin();
 
     static {
         users = new ArrayList<>();
         scanner = new Scanner(System.in);
         userId=3000;
+        users.add(admin);
     }
 
     public static void displayUserList(){
         for (User user: users){
-            System.out.println(user.getUsername());
+            System.out.println(user.toString());
         }
     }
 

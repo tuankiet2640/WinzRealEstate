@@ -46,5 +46,6 @@ public class AdminService implements Serializable {
 
       User user=  UserService.findUserById(userId);
       users.remove(user);
+      PropertyService.updatePropertyList();
   }
 }
