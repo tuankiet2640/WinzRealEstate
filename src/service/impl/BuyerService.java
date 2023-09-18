@@ -88,6 +88,7 @@ public class BuyerService implements Serializable {
         int propertyId= scanner.nextInt();
         scanner.nextLine();
 
+        System.out.println("thông tin BDS là");
         Property property = PropertyService.findPropertyById(propertyId);
         if (property!=null){
             System.out.println(property);
