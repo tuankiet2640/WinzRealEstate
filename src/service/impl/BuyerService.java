@@ -1,10 +1,7 @@
 package service.impl;
 
 import constants.Constants;
-import entity.Buyer;
-import entity.Property;
-import entity.Seller;
-import entity.User;
+import entity.*;
 import service.IFind;
 
 import java.io.Serializable;
@@ -59,7 +56,7 @@ public class BuyerService implements Serializable {
                         UserService.changePassword(user);
                         break;
                         case Constants.BUYER_PICK_PROPERTY:
-                            buyProperty();
+                            buyProperty(user);
                             break;
                     case Constants.USER_LOGOUT:
                         return;
@@ -83,17 +80,45 @@ public class BuyerService implements Serializable {
         iFind.find();
     }
 
-    private void buyProperty() {
+    private void buyProperty(User user) {
+        Buyer buyer = (Buyer)user;
         System.out.println("Nhập Property Id cần mua: ");
         int propertyId= scanner.nextInt();
         scanner.nextLine();
 
         System.out.println("thông tin BDS là");
         Property property = PropertyService.findPropertyById(propertyId);
+        Seller seller =PropertyService.propertySellerInfo(property);
         if (property!=null){
             System.out.println(property);
-            System.out.println(PropertyService.propertySellerInfo(property).getUsername()+ ": "+((Seller)PropertyService.propertySellerInfo(property)).getPhoneNumber());
+                System.out.println(seller.getUsername()+ ": "+seller.getPhoneNumber());
+        } else {
+            System.out.println(" ko có bds với id trên");
         }
+
+        System.out.println("bạn có muốn tạo hợp đồng nháp? ");
+        System.out.println("1. có");
+        System.out.println("2. ko");
+
+        int chotDon=scanner.nextInt();
+        scanner.nextLine();
+
+        switch (chotDon){
+            case Constants.YES:
+                createDraftContract(buyer,seller,property);
+                break;
+            case Constants.NO:
+                break;
+
+        }
+
     }
+
+    private void createDraftContract(Buyer buyer, Seller seller, Property property) {
+        System.out.println("Hợp đồng nháp gồm bên A: "+ buyer.getUsername()+" và bên B: "+ seller.getUsername()+" về mua bán bds "+ property.getPropertyTitle() +" đã được gửi về email của seller la "+ buyer.getEmail());
+        DraftContract draftContract= new DraftContract(property,buyer,seller);
+        return;
+    }
+
 
 }

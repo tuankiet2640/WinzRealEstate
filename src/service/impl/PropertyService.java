@@ -2,7 +2,6 @@ package service.impl;
 
 import entity.*;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +112,7 @@ public class PropertyService implements Serializable {
         }
         return null;
     }
-    public static User propertySellerInfo(Property property) {
+    public static Seller propertySellerInfo(Property property) {
         List<User> users= UserService.getUsers();
         for (User user : users) {
             if (user instanceof Seller) {

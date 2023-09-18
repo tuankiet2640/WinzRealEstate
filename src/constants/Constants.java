@@ -20,4 +20,6 @@ public interface Constants {
 
     int ADMIN_VIEW_USER_LIST = 1;
     int ADMIN_DELETE_USER = 2;
+    int YES=1;
+    int NO=2;
 }
