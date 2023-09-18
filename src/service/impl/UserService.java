@@ -91,7 +91,14 @@ public class UserService implements Serializable{
         }
         return null;
     }
-
+    public static User findUserById(int userId){
+        for (User user : users) {
+            if ((user.getUserId()==(userId))){
+                return user;
+            }
+        }
+        return null;
+    }
     public static List<User> getUsers() {
         return users;
     }

@@ -1,3 +1,4 @@
+import entity.Admin;
 import service.impl.MainMenu;
 
 public class Main {

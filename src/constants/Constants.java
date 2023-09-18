@@ -18,4 +18,6 @@ public interface Constants {
     int FIND_BY_PRICE_LOW_TO_HIGH=2;
     int FIND_BY_NAME=3;
 
+    int ADMIN_VIEW_USER_LIST = 1;
+    int ADMIN_DELETE_USER = 2;
 }

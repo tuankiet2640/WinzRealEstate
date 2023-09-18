@@ -1,6 +1,7 @@
 package service.impl;
 
 import constants.Constants;
+import entity.Admin;
 import entity.Property;
 import entity.User;
 
@@ -71,6 +72,8 @@ public class MainMenu {
     }
     public static void updateData() {
         List<User> users= UserService.getUsers();
+//        Admin admin= Admin.getAdmin();
+//users.add(admin);
         try {
             ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(UserService.getUserdata()));
             oos.writeObject(users);
